@@ -4,7 +4,11 @@
   alert(`${message}\n, ${line}:${col}`);
 };*/</script>
   <meta charset="UTF-8">
-  <title>Audio Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+        ㅤ
+  </title>
+  <link rel="shortcut icon" id=favicon">
   <style>
     :root {
       --cbuttons: url("cbuttons_1.bmp");
@@ -1172,6 +1176,7 @@ function updateTitleBar(info) {
     }, 3000);
   } else {
     titleEl.textContent = `${name}`;
+    document.head.querySelector('title').innerHTML = state > 0 ? (track?track.name:"        ㅤ"):"        ㅤ";
   }
   // titleEl.textContent = `${name} | ${info}`;
 }
