@@ -447,6 +447,7 @@
     let levelAnalyserArray = [0,0,0,0,0,0,0,0,0,0,0];
     let state = 0; // 0 - stop, 1 - play, 2 - pause
     let tracksDur = 0;
+    let current_time = 0;
 
     let midResult;
     let midiOscillators = [];
@@ -699,6 +700,7 @@ function updateSpectrum() {
     
     
       }}};
+  renderFavicon(levelAnalyserArray);
 };
 setInterval(updateSpectrum, 50);
 
@@ -1194,6 +1196,7 @@ function updateTimeCounter() {
   if (state > 0) {
     if (isMidi) {
       const cur = midiPlaying ? context.currentTime - midiStartTime : midiCurrentTime;
+      current_time = cur;
       const dur = midiDuration;
       const rem = dur - cur;
       switch (timeDisplayMode) {
@@ -1209,6 +1212,7 @@ function updateTimeCounter() {
       }
     } else {
       const cur = audio.currentTime;
+      current_time = cur;
       const dur = audio.duration || 0;
       const rem = dur - cur;
       switch(timeDisplayMode) {
@@ -1225,6 +1229,7 @@ function updateTimeCounter() {
     }
   } else {
     renderTimer(`${tracks.length.toString().padStart(2, ' ').padEnd(3, ' ')} ${formatTime(tracksDur)}`);
+    current_time = tracksDur;
   }
 }
 
@@ -1550,7 +1555,71 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
       }
       timeCounter.innerHTML = iHTML;
     };
-    
+            let faviconSrcs = [
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAAOSURBVHicY2BgcABDBgADygDBN8G5RgAAAABJRU5ErkJggg==',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEUAAADL19qQ4qh8AAAAAnRSTlMA/1uRIrUAAAAMSURBVHicY1BggEIAAyoAoW+mkhsAAAAASUVORK5CYII=',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAASSURBVHicY2BgOMDAwJDAwAAABmoBIWiARTYAAAAASUVORK5CYII=',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAAOSURBVHicY2BgOMAAxgAHigGB3BlEeAAAAABJRU5ErkJggg==',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAASSURBVHicY3BgcGBgYDjAcAAABwoCAXSeLCQAAAAASUVORK5CYII=',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAASSURBVHicY2BgSGBgYDjAwAAABOoBIebnzswAAAAASUVORK5CYII=',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAASSURBVHicY2BgSGBgYHBgYAAAA2oAoeYKymkAAAAASUVORK5CYII=',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAANSURBVHicY2BgOACBAAwKAwEXyI3tAAAAAElFTkSuQmCC',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAAOSURBVHicY2BgcGAAYwACigCBdApDxQAAAABJRU5ErkJggg==',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFAQMAAAC6v8ThAAAABlBMVEXL19oAAACsdK0MAAAAAnRSTlP/AOW3MEoAAAASSURBVHicY2BgcGBgYDjAwAAABAoBASkRAOYAAAAASUVORK5CYII='
+        ];
+        let faviconNumbers = [
+            new Image(),
+            new Image(),
+            new Image(),
+            new Image(),
+            new Image(),
+            new Image(),
+            new Image(),
+            new Image(),
+            new Image(),
+            new Image()
+        ];
+        for (let i = 0; i < faviconNumbers.length; i++) {
+            faviconNumbers[i].src = faviconSrcs[i];
+        }
+    let fc = new OffscreenCanvas(16,16);
+    let fctx = fc.getContext('2d');
+            function renderFavicon(da) {
+            //fctx.filter = 'none';
+            fctx.clearRect(0,0,fc.width,fc.height);
+            for (let i = 0; i < da.length; i++) {
+                //fctx.fillStyle = `hsl(${120-da[i]/255*120}, 100%, 50%)`;
+                fctx.fillStyle = 'rgb(203,215,218)';
+                fctx.fillRect (i+2, Math.ceil(fc.height-da[i]/255*5)-7, 1, analyserMode == 1?1:Math.ceil(da[i]/255*5));
+                fctx.fillStyle = 'rgb(241,89,47)';
+                fctx.fillRect(i+2, 7, 1, 1);
+                if(Math.ceil(da[i]/255*5)-3 > 0) {
+                  fctx.fillRect (i, Math.ceil(fc.height-(da[i]/255*5-3))-12, 1, analyserMode == 1?1:Math.ceil(da[i]/255*5)-3);  
+                }
+                                 
+            };
+            let t = formatTime(current_time);
+            
+            /* fctx.clearRect(0,0,fc.width,fc.height); */
+            for (let i = 0; i < t.length; i++) {
+                /* console.log(faviconNumbers[Number(t[i])]); */
+                if(faviconNumbers[Number(t[i])]) {
+                    if(i == 0) {
+                        fctx.drawImage(faviconNumbers[Number(t[i])], 0, 10);
+                        /* console.log(faviconNumbers[Number(t[i])]); */
+                    } else if(i == 1) {
+                        fctx.drawImage(faviconNumbers[Number(t[i])], 4, 10);
+                    } else if(i == 3) {
+                        fctx.drawImage(faviconNumbers[Number(t[i])], 9, 10);
+                    } else if(i == 4) {
+                        fctx.drawImage(faviconNumbers[Number(t[i])], 13, 10);
+                    }
+                }
+                /* } */                
+            };
+            let dataURL = fc.toDataURL("image/png", 1.0);
+            favicon.href = dataURL;
+        }
     audio.addEventListener("ended", ()=>{nextTrack(true)});
   </script>
   <script type="module">
