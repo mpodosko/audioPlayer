@@ -1592,11 +1592,11 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
             for (let i = 0; i < da.length; i++) {
                 //fctx.fillStyle = `hsl(${120-da[i]/255*120}, 100%, 50%)`;
                 fctx.fillStyle = 'rgb(203,215,218)';
-                fctx.fillRect (i+2, Math.ceil(fc.height-da[i]/255*5)-7, 1, analyserMode == 1?1:Math.ceil(da[i]/255*5));
+                fctx.fillRect (i+2, fc.height-Math.ceil(da[i]/255*5)-7, 1, analyserMode == 1?1:Math.ceil(da[i]/255*5));
                 fctx.fillStyle = 'rgb(241,89,47)';
                 fctx.fillRect(i+2, 7, 1, 1);
                 if(Math.ceil(da[i]/255*5)-3 > 0) {
-                  fctx.fillRect (i, Math.ceil(fc.height-(da[i]/255*5-3))-12, 1, analyserMode == 1?1:Math.ceil(da[i]/255*5)-3);  
+                  fctx.fillRect (i+2, fc.height-Math.ceil(da[i]/255*5-3)-12, 1, analyserMode == 1?1:Math.ceil(da[i]/255*5)-3);  
                 }
                                  
             };
