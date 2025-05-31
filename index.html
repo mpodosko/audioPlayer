@@ -432,7 +432,7 @@
     </div>
   </div>
   <audio id="audio" crossorigin="anonymous"></audio>
-
+  <canvas id="fc" width=16 height=16 style="display:none"></canvas>
   <script>
     const audio = document.getElementById('audio');
     const seekbar = document.getElementById('seekbar');
@@ -1583,11 +1583,12 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
         for (let i = 0; i < faviconNumbers.length; i++) {
             faviconNumbers[i].src = faviconSrcs[i];
         }
-    let fc = new OffscreenCanvas(16,16);
+    //let fc = new OffscreenCanvas(16,16);
     let fctx = fc.getContext('2d');
             function renderFavicon(da) {
             //fctx.filter = 'none';
-            fctx.clearRect(0,0,fc.width,fc.height);
+            fctx.fillStyle = '#111';
+            fctx.fillRect(0,0,fc.width,fc.height);
             for (let i = 0; i < da.length; i++) {
                 //fctx.fillStyle = `hsl(${120-da[i]/255*120}, 100%, 50%)`;
                 fctx.fillStyle = 'rgb(203,215,218)';
