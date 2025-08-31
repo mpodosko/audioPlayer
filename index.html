@@ -2,7 +2,8 @@
 <html lang="en">
 <head><script>window.onerror = function(message, url, line, col, errorObj) {
   titleBar.textContent = (`${message}\n, ${line}:${col}`);
-};</script>
+};
+//icarus</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
@@ -10,9 +11,9 @@
   </title>
   <link rel="shortcut icon" id="favicon">
   <style>
-    :root {
-      --cbuttons: url("cbuttons_1.bmp");
-      --wbuttons: url("eqpl.png");
+    :root {/*scale:0.5;*/
+      --cbuttons: url("textures/cbuttons.bmp");/*control buttons*/
+      --wbuttons: url("textures/eqpl.png");/*window buttons*/
     }
     body {
       font-family: Arial, sans-serif;
@@ -26,7 +27,7 @@
     .controls button, .controls input[type="range"] {
       margin: 5px;
     }
-    .controls button, #recordBtn, #recPauseBtn {
+    .controls button, #recordBtn, #recPauseBtn, #syncDubBtn {
       width: 64px;
       height: 32px;
       background: var(--cbuttons);
@@ -74,7 +75,7 @@
       background-position: -368px 0px;
       width:64px;
     }
-    .controls #eqButton, .controls #plButton, .controls #moreButton, #recordBtn, #recPauseBtn {
+    .controls #eqButton, .controls #plButton, .controls #moreButton, #recordBtn, #recPauseBtn, #syncDubBtn {
       background: var(--wbuttons);
       width:32px;
       height:32px;
@@ -241,7 +242,7 @@
     #display {
       display: block;
       width: 368px;
-      height: 65px;
+      height: 64px;
       background: #111; /*#111*/
     }
     #timeCounter {
@@ -259,7 +260,7 @@
     }
     #timeCounter * {
       display: inline-block;
-      background: url("numbers_2.png");
+      background: url("textures/numbers.png");
       width: 16px;
       height: 25px;
       margin-right: 6px;
@@ -275,7 +276,7 @@
       /* background: #111; */
     }
     .analyserBar {
-      background: url("spectrum_3.png");
+      background: url("textures/spectrum.png");
       width: 10px;
       height: 49px;
       margin: 0;
@@ -284,7 +285,7 @@
       display: inline-block;
     }
     #analyserBox.bassAnalyser .analyserBar {
-      background: url("level.png");
+      background: url("textures/bass.png");
     }
     input[type=range] {
       -webkit-appearance: none;
@@ -294,7 +295,7 @@
       border-image-width:1px 1px 1px 1px;
       border-image-outset:0px 0px 0px 0px;
       border-image-repeat:repeat repeat;
-      border-image-source:url("slider_bg.png");
+      border-image-source:url("textures/slider_bg.png");
       border-style:solid;
       background-color: #222;
       height: 2px;
@@ -303,7 +304,7 @@
       height: 6px;
       width: 24px;
       outline: none;
-      background: url('slider.png');
+      background: url('textures/slider.png');
       -webkit-appearance: none;
       appearance: none;
       background-repeat: no-repeat;
@@ -317,7 +318,7 @@
         height: 24px;
         width: 6px;
         outline: none;
-        background: url('slider_vertical.png');
+        background: url('textures/slider_vertical.png');
         -webkit-appearance: none;
         appearance: none;
         background-repeat: no-repeat;
@@ -345,7 +346,7 @@
       height: 9px;
     }
     #playIndicator.activeIndicator {
-      background: url('play.png');
+      background: url('textures/play.png');
     }
     #pauseIndicator {
       width: 9px;
@@ -353,13 +354,13 @@
       margin-left: 3px;
     }
     #pauseIndicator.activeIndicator {
-      background: url('pause.png');
+      background: url('textures/pause.png');
     }
     #repeatIndicator {
       margin-left: 3px;
       width: 21px;
       height: 9px;
-      background: url('repmode.png');
+      background: url('textures/repmode.png');
     }
     #repeatIndicator.repeatIndicator1 {
       background-position: 0px -9px;
@@ -372,7 +373,7 @@
       border-image-width:1px 1px 1px 1px;
       border-image-outset:0px 0px 0px 0px;
       border-image-repeat:repeat repeat;
-      border-image-source:url("slider_bg.png");
+      border-image-source:url("textures/border.png");
       border-style:solid;
       /* background-color: #222; */
       width: 348px;
@@ -381,6 +382,160 @@
 /*     *:hover {
       outline: #f00 solid 1px !important;
     } */
+    #recIndicator {
+      width: 9px;
+      height: 9px;
+      
+      margin-left: 3px;
+    }
+    #recIndicator.activeIndicator {
+      background: url('textures/rec.png');
+    }
+    #recPauseIndicator {
+      width: 9px;
+      height: 9px;
+    }
+    #recPauseIndicator.activeIndicator {
+      background: url('textures/recpause.png');
+    }
+
+    #syncDubBtn {
+      width: 64px;
+      background-position: -160px 0px;
+    }
+    #syncDubBtn:active {
+      background-position: -160px -32px;
+    }
+    #syncDubBtn.activeBtn {
+      background-position: -160px -64px;
+    }
+    #syncDubBtn.activeBtn:active {
+      background-position: -160px -96px;
+    }
+
+    #displayControls {
+      margin: 0;
+      padding: 0;
+      margin-left: -4px;
+      margin-bottom: -23px;
+    }
+    #displayControls button {
+      background: url('textures/displaycontrols.png');
+      width: 32px;
+      height: 16px;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      border: none;
+      display: block;
+    }
+    #display, #displayControls {
+      display: inline-block;
+    }
+
+    #timerModeBtn {
+      background-position: 0px 0px;
+    }
+    #timerModeBtn:active {
+      background-position: 0px -16px;
+    }
+    #timerModeBtn.activeBtn {
+      background-position: 0px -32px;
+    }
+    #timerModeBtn.activeBtn:active {
+      background-position: 0px -48px;
+    }
+    
+    #secMinBtn {
+      background-position: -32px 0px !important;
+    }
+    #secMinBtn:active {
+      background-position: -32px -16px !important;
+    }
+    #secMinBtn.activeBtn {
+      background-position: -32px -32px !important;
+    }
+    #secMinBtn.activeBtn:active {
+      background-position: -32px -48px !important;
+    }
+        
+    #analyserModeBtn {
+      background-position: -64px 0px !important;
+    }
+    #analyserModeBtn:active {
+      background-position: -64px -16px !important;
+    }
+    #analyserModeBtn.activeBtn {
+      background-position: -64px -32px !important;
+    }
+    #analyserModeBtn.activeBtn:active {
+      background-position: -64px -48px !important;
+    }
+
+    #analyserMaxBtn {
+      background-position: -128px 0px !important;
+    }
+    #analyserMaxBtn:active {
+      background-position: -128px -16px !important;
+    }
+    #analyserMaxBtn.activeBtn {
+      background-position: -128px -32px !important;
+    }
+    #analyserMaxBtn.activeBtn:active {
+      background-position: -128px -48px !important;
+    }
+            
+    #repeatModeBtn {
+      background-position: -96px 0px !important;
+    }
+    #repeatModeBtn:active {
+      background-position: -96px -16px !important;
+    }
+    #repeatModeBtn.activeBtn {
+      background-position: -96px -32px !important;
+    }
+    #repeatModeBtn.activeBtn:active {
+      background-position: -96px -48px !important;
+    }
+    * {image-rendering:pixelated}
+
+    #autoSearchBtn {
+      width: 128px;
+      height:32px;
+      margin:0;padding:0;border:none;display:inline-block;
+      background:url('textures/autosearch_btn.png');
+      background-position: 0px 0px;
+    }
+    #autoSearchBtn:active {
+      background-position: 0px -32px;
+    }
+    #autoSearchBtn.activeBtn {
+      background-position: 0px -64px;
+    }
+    #autoSearchBtn.activeBtn:active {
+      background-position: 0px -96px;
+    }
+    #autoSearchImg {
+      display: inline-block; margin: 0; padding: 0;
+      /*margin-left:4px;*/
+      width: 96px;
+      height: 32px;
+      background: url('textures/autosearch_bg.png');
+    }
+    #rewindIndicator, #autoSearchIndicator, #fastForwardIndicator {
+      width: 9px;
+      height: 9px;
+      margin-left: 3px;
+    }
+    #autoSearchIndicator {
+      width:29px;background-position:-9px 0px !important;
+    }
+    #rewindIndicator.activeIndicator, #autoSearchIndicator.activeIndicator, #fastForwardIndicator.activeIndicator {
+      background: url('textures/autosearch_display.png');
+    }
+    #fastForwardIndicator.activeIndicator {
+      background-position:9px 0px !important;
+    }
   </style>
 </head>
 <body>
@@ -389,7 +544,7 @@
   </div>
   <div id="display">
     <div id="indicatorBar">
-      <div class="indicator" id="playIndicator"></div><div class="indicator" id="pauseIndicator"></div><div class="indicator" id="repeatIndicator"></div>
+      <div class="indicator" id="playIndicator"></div><div class="indicator" id="pauseIndicator"></div><div class="indicator" id="repeatIndicator"></div><div class="indicator" id="recIndicator"></div><div class="indicator" id="recPauseIndicator"></div><div class="indicator" id="rewindIndicator"></div><div class="indicator" id="autoSearchIndicator"></div><div class="indicator" id="fastForwardIndicator"></div>
     </div>
     <div id="timeCounter" style="cursor:pointer; user-select:none;/*  font-family: monospace; */">
       0:00
@@ -397,12 +552,20 @@
     <div id="analyserBox">
       <div class="analyserBar analyserBar0"></div><div class="analyserBar analyserBar1"></div><div class="analyserBar analyserBar2"></div><div class="analyserBar analyserBar3"></div><div class="analyserBar analyserBar4"></div><div class="analyserBar analyserBar5"></div><div class="analyserBar analyserBar6"></div><div class="analyserBar analyserBar7"></div><div class="analyserBar analyserBar8"></div><div class="analyserBar analyserBar9"></div><div class="analyserBar analyserBar10"></div>
     </div>
+
+  </div>
+  <div id="displayControls">
+    <button id="timerModeBtn"></button>
+    <button id="secMinBtn"></button>
+    <button id="analyserModeBtn"></button>
+    <button id="analyserMaxBtn"></button>
+    <button id="repeatModeBtn"></button>
   </div>
   <div class="controls">
-    <button onclick="playAudio();this.setAttribute('class', 'active')"></button><button onclick="pauseAudio();this.setAttribute('class', 'active')"></button><button onclick="stopAudio();this.setAttribute('class', 'active')" class=""></button><!-- Hidden File Input --><input type="file" id="fileInput" accept="audio/*" multiple style="display:none"><button onclick="fileInput.click()"></button><button onclick="loadURLPrompt()"></button>
+    <button onclick="playAudio();this.setAttribute('class', 'active')" id="playButton"></button><button onclick="pauseAudio();this.setAttribute('class', 'active')" id="pauseButton"></button><button onclick="stopAudio();this.setAttribute('class', 'active')" class="active" id="stopButton"></button><!-- Hidden File Input --><input type="file" id="fileInput" accept="audio/*" multiple style="display:none"><button onclick="fileInput.click()"></button><button onclick="loadURLPrompt()"></button>
     <br>
-    <button onclick="prevTrack()"></button><button onclick="nextTrack()"></button><button onclick="rewindAudio()"></button><button onclick="fastForwardAudio()"></button><button id="eqButton"></button><button id="plButton"></button><button id="moreButton" onclick="this.classList.toggle('activeBtn'); hiddenControls.style.display = this.classList.contains('activeBtn') ? '' : 'none'"></button>
-    <br>
+    <button onclick="prevTrack()"></button><button onclick="nextTrack()"></button><button onpointerdown="rewindAudio(this)"></button><button onpointerdown="fastForwardAudio(this)"></button><button id="eqButton"></button><button id="plButton"></button><button id="moreButton" onclick="this.classList.toggle('activeBtn'); hiddenControls.style.display = this.classList.contains('activeBtn') ? '' : 'none'"></button>
+    <br><!--onclick="rewindAudio()"--><!--onclick="fastForwardAudio()"-->
     <label for="seekbar">Seek</label><br><input type="range" id="seekbar" value="0" min="0" max="6039" step="1" style="width: 364px;margin-left:0px;"><br><br>
     <label for="volumeBar">Volume</label><br><input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1" style="width: 364px;margin-left:0px;">
   </div>
@@ -411,10 +574,71 @@
     <input type="range" min="-40" max="40" value="0" title="Preamp" style="margin-right: 32px;" id="preampBar">
   </div>-->
   <div id="hiddenControls" style="display:none">
-    <button id="recordBtn"></button><button id="recPauseBtn"></button><br>
-    <label for="inputLevelBar">Source/rec level</label><br><input type="range" id="inputLevelBar" min="0" max="1" step="0.01" value="1" style="margin-left:0px;width: 340px;">
+    <button id="recordBtn"></button><button id="recPauseBtn"></button><button id="syncDubBtn"></button><br>
+    <button id="autoSearchBtn"></button><span id="autoSearchImg"></span><br>
+    <label for="autoSearchThresholdBar">Auto search volume threshold</label><br><input type="range" id="autoSearchThresholdBar" min="-75" max="-10" step="1" value="-50" style="margin-left:0px;width: 340px;" oninput="updateTitleBar(`Auto search volume threshold: ${this.value}dB`); localStorage.setItem('autoSearchThreshold', this.value);inputAnalyser.minDecibels = this.value;"><br>
+    <label for="autoSearchSilenceLengthBar">Auto search min silence length</label><br><input type="range" id="autoSearchSilenceLengthBar" min="1" max="20" step="1" value="4" style="margin-left:0px;width: 340px;" oninput="updateTitleBar(`Auto search min silence length: ${this.value/2}s`); localStorage.setItem('autoSearchSilenceLength', this.value);"><br><br>    <label for="inputLevelBar">Source/rec level</label><br><input type="range" id="inputLevelBar" min="0" max="2" step="0.01" value="1" style="margin-left:0px;width: 340px;"><br><br>
+    <label for="speedBar">Speed</label><br><input type="range" id="speedBar" min="0.25" max="4" step="0.01" value="1" style="margin-left:0px;width: 340px;">
     <h3>Compressor</h3>
     <div id="compressorControls">
+      <input type=checkbox id=compToggle checked oninput="
+
+if(this.checked) {
+localStorage.setItem('compOn', '1');
+
+if(Number(localStorage.getItem('equalizerOn'))) {//alert('1');
+  filters[filters.length-1].disconnect(inputLevelGain); // the what
+  filters[filters.length-1].connect(compressor);
+} else {//alert('2');
+  sourceNode.disconnect(inputLevelGain);
+  sourceNode.connect(compressor);
+  if(isMidi) {
+    midiOscillators.forEach(track => {
+      track.forEach((o) => {o.gain.disconnect(inputLevelGain);o.gain.connect(compressor)});
+    });
+  }
+}
+compressor.connect(inputLevelGain);
+
+
+
+} else if(!this.checked) {
+
+
+
+localStorage.setItem('compOn', '0');
+
+if(Number(localStorage.getItem('equalizerOn'))) {//alert('3');
+  filters[filters.length-1].disconnect(compressor); // the what
+  filters[filters.length-1].connect(inputLevelGain);
+} else {//alert('4');
+  sourceNode.disconnect(compressor);
+  sourceNode.connect(inputLevelGain);
+  if(isMidi) {
+    midiOscillators.forEach(track => {
+      track.forEach((o) => {o.gain.disconnect(compressor);o.gain.connect(inputLevelGain)});
+    });
+  }
+}
+compressor.disconnect(inputLevelGain);
+
+}
+/*
+
+
+
+if you think it's the worst
+SHIT
+you've ever seen,
+you need to look at
+M*KU H*TSUNE at least one more time
+then look at this code again
+and think
+
+
+
+*/
+"><label for=compToggle>On</label><br>
       <label style="width: 98px;display: inline-block;" for="compThreshold">Threshold: </label><input style="width:240px" type="range" id="compThreshold" min="-100" max="0" value="-24"><br>
       <label style="width: 98px;display: inline-block;" for="compKnee">Knee:      </label><input style="width:240px" type="range" id="compKnee" min="0" max="40" value="30"><br>
       <label style="width: 98px;display: inline-block;" for="compRatio">Ratio:     </label><input style="width:240px" type="range" id="compRatio" min="1" max="20" value="12"><br>
@@ -428,11 +652,34 @@
         <option value="square">Square</option>
         <option value="triangle">Triangle</option>
         <option value="sawtooth">Sawtooth</option>
-      </select>
+      </select><br>
+      <canvas id="midVisualizer" width="256" height="128"></canvas> <!--
+
+
+
+let it be here.
+
+It's also a very good place for it
+because there isn't a very weird thing
+that started existing approx. ${new Date(1173398400000)}
+and makes things that you can record on...
+
+AUDIOCASSETTE
+
+Also,
+that weird thing's country of origin
+is the same
+as the country of origin of
+VHS
+
+
+
+-->
     </div>
   </div>
   <audio id="audio" crossorigin="anonymous"></audio>
   <canvas id="fc" width=16 height=16 style="display:none"></canvas>
+  
   <script>
     const audio = document.getElementById('audio');
     const seekbar = document.getElementById('seekbar');
@@ -445,8 +692,10 @@
     let tracks = [];
     let repeatMode = 1; // 0 - don't play next track when current ends, 1 - play all playlist to the end, 2 - repeat playlist (play 1st track after last one)
     let analyserMode = 0; // 0 - spectrum (normal), 1 - bass, 2 - level
+    let analyserMaxMode = 1; // 0 - analyser max = 0dB, 1 - analyser max = +10dB
     let levelAnalyserArray = [0,0,0,0,0,0,0,0,0,0,0];
     let state = 0; // 0 - stop, 1 - play, 2 - pause
+    let autoSearchState = 0; // 0 - off, 1 - direction choosing, 2 - rewinding/fast forwarding
     let tracksDur = 0;
     let current_time = 0;
 
@@ -460,6 +709,9 @@
     let midiTempo = 500000;
     let MICROSECONDS_PER_MINUTE = 60000000;
     let isMidi = false;
+
+    let midVisArr = [];
+    let midVisCtx = midVisualizer.getContext('2d');
 
 /*     let midiTempos = [];
     let timeOffsets = [];
@@ -478,6 +730,8 @@
         analyserBox.className = '';
       }
     }
+
+
 
     // AudioContext for Equalizer
     const context = new (window.AudioContext || window.webkitAudioContext)();
@@ -565,21 +819,29 @@ const compressor = context.createDynamicsCompressor();
 
 const analyser = context.createAnalyser();
 analyser.minDecibels = -50;
-analyser.maxDecibels = 10;
+analyser.maxDecibels = analyserMaxMode*10;
 analyser.smoothingTimeConstant = 0.25;
-analyser.fftSize = 32;
+analyser.fftSize = 1024; // 32
 
 let analyserDataArray = new Uint8Array(analyser.frequencyBinCount);
 
 const bassAnalyser = context.createAnalyser();
 bassAnalyser.minDecibels = -50;
-bassAnalyser.maxDecibels = 10;
+bassAnalyser.maxDecibels = analyserMaxMode*10;
 bassAnalyser.smoothingTimeConstant = 0.25;
 bassAnalyser.fftSize = 256;
 
 let bassAnalyserDataArray = new Uint8Array(bassAnalyser.frequencyBinCount);
 
+const inputAnalyser = context.createAnalyser();
+inputAnalyser.minDecibels = -50;
+inputAnalyser.maxDecibels = 0;
+inputAnalyser.smoothingTimeConstant = 0;
+inputAnalyser.fftSize = 32;
 
+let inputAnalyserDataArray = new Uint8Array(inputAnalyser.frequencyBinCount);
+
+sourceNode.connect(inputAnalyser);
 
 if(localStorage.getItem('equalizerOn') == null) {
   localStorage.setItem('equalizerOn', '0');
@@ -590,7 +852,23 @@ if(localStorage.getItem('equalizerOn') == '0') {
   equalizerOn = true;
 }
 
-if(equalizerOn) {
+    if(localStorage.getItem('analyserMaxMode') == null) {
+      localStorage.setItem('analyserMaxMode', '0');
+    } else {
+      analyserMaxMode = Number(localStorage.getItem('analyserMaxMode'));
+      if(analyserMaxMode == 0) {
+        analyser.maxDecibels = 0;
+        bassAnalyser.maxDecibels = 0;
+      } else if(analyserMaxMode == 1) {
+        analyser.maxDecibels = 10;
+        bassAnalyser.maxDecibels = 10;
+      } else if(analyserMaxMode == 2) {
+        analyser.maxDecibels = -10;
+        bassAnalyser.maxDecibels = -10;
+      }
+    }
+
+/*if(equalizerOn) {
   sourceNode.connect(preamp);
   filters.reduce((prev, curr) => {
     prev.connect(curr);
@@ -598,11 +876,51 @@ if(equalizerOn) {
   }, preamp).connect(compressor);
 } else {
   sourceNode.connect(compressor);
+}*/
+
+if(localStorage.getItem('compOn') == null || localStorage.getItem('compOn') == '1') {
+localStorage.setItem('compOn', '1');
+compToggle.checked = 1;
+if(equalizerOn) {
+  sourceNode.connect(preamp);
+  filters.reduce((prev, curr) => {
+    prev.connect(curr);
+    return curr;
+  }, preamp);
+  filters[filters.length-1].connect(compressor);
+} else {
+  sourceNode.connect(compressor);
 }
+compressor.connect(inputLevelGain);
+} else if(localStorage.getItem('compOn') == '0') {
+compToggle.checked = 0;
+if(equalizerOn) {
+  sourceNode.connect(preamp);
+  filters.reduce((prev, curr) => {
+    prev.connect(curr);
+    return curr;
+  }, preamp);
+  filters[filters.length-1].connect(inputLevelGain);
+} else {
+  sourceNode.connect(inputLevelGain);
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 const dest = context.createMediaStreamDestination();
 
-const mediaRecorder = new MediaRecorder(dest.stream, {mimeType:"audio/webm;codecs=pcm"});
+const mediaRecorder = new MediaRecorder(dest.stream, /*{mimeType:"audio/webm;codecs=pcm"}*/);
 let chunks = [];
 //mediaRecorder.start();
 mediaRecorder.ondataavailable = (evt) => {
@@ -617,7 +935,7 @@ mediaRecorder.onstop = (evt) => {
   let link = document.createElement('a');
   let date = new Date();
   let resDate = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()} ${date.getHours().toString().padStart(2, '0')};${date.getMinutes().toString().padStart(2, '0')};${date.getSeconds().toString().padStart(2, '0')};${date.getMilliseconds().toString().padStart(3, '0')}`;
-  link.download = 'record '+resDate+'.wav';
+  link.download = 'record '+resDate+'.mp3';
   link.href = URL.createObjectURL(blob);
   link.click();
   URL.revokeObjectURL(link.href);
@@ -630,38 +948,67 @@ let isRecPaused = false;
 recordBtn.onclick = () => {
   if(!isRecording) {
     mediaRecorder.start();
+    recordBtn.classList.add('activeBtn');
+    recIndicator.classList.add('activeIndicator');
   } else {
     mediaRecorder.stop();
     isRecPaused = false;
+    recordBtn.classList.remove('activeBtn');
+    recIndicator.classList.remove('activeIndicator');
     recPauseBtn.classList.remove('activeBtn');
+    recPauseIndicator.classList.remove('activeIndicator');
   };
   isRecording = !isRecording;
-  recordBtn.classList.toggle('activeBtn');
+  //recordBtn.classList.toggle('activeBtn');
+  //recIndicator.classList.toggle('activeIndicator');
 }
 recPauseBtn.onclick = () => {
   if(!isRecording) return;
   if(!isRecPaused) {
     mediaRecorder.pause();
+    recPauseBtn.classList.add('activeBtn');
+    recPauseIndicator.classList.add('activeIndicator');
   } else {
     mediaRecorder.resume();
+    recPauseBtn.classList.remove('activeBtn');
+    recPauseIndicator.classList.remove('activeIndicator');
   };
   isRecPaused = !isRecPaused;
-  recPauseBtn.classList.toggle('activeBtn');
+  //recPauseBtn.classList.toggle('activeBtn');
+  //recPauseIndicator.classList.toggle('activeIndicator');
 };
+syncDubBtn.onclick = () => {
+  pauseButton.click();
+  if(isRecording) {
+    recordBtn.click();
+    pauseButton.click()
+  } else {
+    if(isMidi) {
+      midiCurrentTime = 0;
+    }
+    else {
+      audio.currentTime = 0;
+    }
+    recordBtn.click();
+    playButton.click();
+  }
+
+}
 
 const outputLevelGain = context.createGain();
 
 // source → preamp → equalizer → compressor → input gain → analyser → bass analyser → output gain → destination
-//                                                                                  → media recorder
-compressor.connect(inputLevelGain).connect(analyser).connect(bassAnalyser).connect(dest);
+//        → input analyser                                                             → media recorder
+inputLevelGain.connect(analyser).connect(bassAnalyser).connect(dest);
 bassAnalyser.connect(outputLevelGain).connect(context.destination);
 
 const analyserBars = document.querySelectorAll('.analyserBar');
 let analyserCounter = 0;
+let spectrumFreqs = [0, 1, 3, 10, 21, 42, 85, 127, 213, 313];
 function updateSpectrum() {
   analyser.getByteFrequencyData(analyserDataArray);
   if(analyserMode == 0){ // spectrum
-  let j = 0;  
+  /*let j = 0;  
   let k = 0;
   for (let i = 0; i < analyserBars.length; i++) {
     if(((((i+1) % 3) == 0) && ((i+1) < analyserBars.length)) || i==14) {
@@ -675,7 +1022,14 @@ function updateSpectrum() {
     }
     j++;
     k++;
-    }}else if(analyserMode == 1){ //bass
+    }*/
+
+for(let i = 0; i < analyserBars.length; i++) {
+let freq_level = i > 3 ? Math.max(...analyserDataArray.slice(spectrumFreqs[Math.floor(i-i/10)], spectrumFreqs[Math.ceil(i-i/10)]+1)) : analyserDataArray[spectrumFreqs[i]];
+analyserBars[i].style.backgroundPosition = `-${Math.ceil(freq_level/255*5)*10}px 0px`;
+levelAnalyserArray[i]=freq_level;
+}
+}else if(analyserMode == 1){ //bass
       analyserCounter++; // slows down
       if(analyserCounter == 1) {
         analyserCounter = 0;
@@ -772,17 +1126,19 @@ setInterval(updateSpectrum, 50);
       const track = tracks[index];
       if (!track) return;
       audio.src = track.url;
+      audio.playbackRate = speedBar.value;
       updateTitleBar();
       if(playlistWindow) {
         let activeLi = playlistWindow.document.querySelector('.activeTrack');
         if(activeLi) {
-          activeLi.style.backgroundColor = '';
-          activeLi.style.fontWeight = '';
-          activeLi.className = '';
+          //activeLi.style.backgroundColor = '';
+          //activeLi.style.fontWeight = '';
+          activeLi.classList.remove('activeTrack');
         }
         let li = playlistWindow.document.querySelectorAll('li')[index];
-        li.style.backgroundColor = '#444';
-        li.style.fontWeight = 'bold';
+        //li.style.backgroundColor = '#444';
+        //li.style.fontWeight = 'bold';
+        li.classList.add('activeTrack');
       }
 
       //audio.play();
@@ -873,7 +1229,11 @@ function playAudio() {
               if(Number(localStorage.getItem('equalizerOn'))) {
                 gain.connect(preamp);
               } else {
-                gain.connect(compressor);
+                if(compToggle.checked) {
+                  gain.connect(compressor);
+                } else {
+                  gain.connect(inputLevelGain);
+                }
               }
               osc.start();
               midiOscillators[i][j] = { osc, gain };
@@ -913,11 +1273,13 @@ for (let i = 0; i < midResult.track.length; i++) {
             midiTimeouts.push(setTimeout(() => {
               midiOscillators[i][note].osc.frequency.value = freq;
               midiOscillators[i][note].gain.gain.value = event.data[1]/127/16/* *inputLevelBar.value */;
+              midVisArr[note] = event.data[1]/127*255;
             }, (scheduledTime - context.currentTime) * 1000));
           } else if (event.type === 8 && event.data) {
             let note = event.data[0];
             midiTimeouts.push(setTimeout(() => {
               midiOscillators[i][note].osc.frequency.value = 0;
+              midVisArr[note] = 0;
             }, (scheduledTime - context.currentTime) * 1000));
           }
 
@@ -937,10 +1299,11 @@ for (let i = 0; i < midResult.track.length; i++) {
   clearInterval(playIndicatorInterval);
   pauseIndicator.classList.remove('activeIndicator');
   playIndicator.classList.add('activeIndicator');
-  playIndicatorInterval = setInterval(() => {
+/*   playIndicatorInterval = setInterval(() => {
     playIndicator.classList.toggle('activeIndicator');
-  }, 500);
+  }, 500); */
   state = 1;
+  playButton.classList.add('active');
 }
 
 function pauseAudio() {
@@ -962,6 +1325,7 @@ function pauseAudio() {
   clearInterval(playIndicatorInterval);
   playIndicator.classList.remove('activeIndicator');
   pauseIndicator.classList.add('activeIndicator');
+  pauseButton.classList.add('active');
 }
     let tmp_audio = new Audio();
     tmp_audio.preload = 'metadata';
@@ -998,6 +1362,7 @@ function pauseAudio() {
     }
     async function stopAudio() {
   state = 0;
+  if(tracks.length) {
   if (/^data:audio\/mid/.test(tracks[currentTrackIndex].url)) {
     isMidi = false;
     midiPlaying = false;
@@ -1019,7 +1384,7 @@ function pauseAudio() {
     audio.pause();
     audio.currentTime = 0;
   }
-
+}
   if (document.querySelector('.active')) document.querySelector('.active').setAttribute('class', '');
   clearInterval(playIndicatorInterval);
   playIndicator.classList.remove('activeIndicator');
@@ -1031,44 +1396,249 @@ function pauseAudio() {
       tracksDur += await GetFileDuration(tracks[i].url);
     //}
   }
+  stopButton.classList.add('active');
 }
 
-    function rewindAudio() {
-      audio.currentTime = Math.max(0, audio.currentTime - 5);
+    /*function rewindAudio() {
+      if(isMidi) {
+        if(midiPlaying) {
+          pauseAudio();
+          midiCurrentTime = Math.max(0, midiCurrentTime - 5);
+          //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+          playAudio();
+        } else {
+          midiCurrentTime = Math.max(0, midiCurrentTime - 5);
+          //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+        }
+      } else {
+        audio.currentTime = Math.max(0, audio.currentTime - 5);
+      }
+    }*/
+    let rewindInterval;
+    function rewindAudio(rewbtn) {
+      clearInterval(rewindInterval);
+      if(isMidi) {
+        if(midiPlaying) {
+          pauseAudio();
+          rewindInterval = setInterval(()=>{
+            midiCurrentTime = Math.max(0, midiCurrentTime - 0.5);
+            //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+            playAudio();
+          }, 40);
+        } else {
+          rewindInterval = setInterval(()=>{
+            midiCurrentTime = Math.max(0, midiCurrentTime - 0.5);
+            //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+          }, 40);
+        }
+      } else {
+        if(autoSearchState == 1) {
+        autoSearchState = 2;
+        clearInterval(autoSearchIndicatorInterval);
+        clearInterval(rewindInterval);
+        autoSearchIndicator.classList.add('activeIndicator');
+        rewindIndicator.classList.add('activeIndicator');
+        fastForwardIndicator.classList.remove('activeIndicator');
+
+        let d = 0;
+        inputAnalyser.getByteFrequencyData(inputAnalyserDataArray);
+        let l = Math.max(inputAnalyserDataArray);
+        let m = 255;
+        rewindInterval = setInterval(()=>{
+          analyser.getByteFrequencyData(inputAnalyserDataArray);
+          l = Math.max(...inputAnalyserDataArray);
+          if(l == 0 && m > 0) {d = 0; m = l;} // silence starts
+          if(l == 0 && m == 0) {m = Math.max(m,l);}; // silence continues
+          if(l > 0) {d = 0; m = 255;} // no silence
+          if(d >= Number(autoSearchSilenceLengthBar.value)-1 && m == 0 || Math.max(0, audio.currentTime - 0.5) == 0) {
+            clearInterval(autoSearchIndicatorInterval);
+            clearInterval(rewindInterval);
+            autoSearchIndicator.classList.remove('activeIndicator');
+            rewindIndicator.classList.remove('activeIndicator');
+            fastForwardIndicator.classList.remove('activeIndicator');
+            autoSearchState = 0;
+          } // silence is long, end rewinding 
+          audio.currentTime = Math.max(0, audio.currentTime - 0.5);
+          d++;
+        }, 40);
+        } else if(autoSearchState == 2) {
+          clearInterval(autoSearchIndicatorInterval);
+          clearInterval(rewindInterval);
+          autoSearchIndicator.classList.remove('activeIndicator');
+          rewindIndicator.classList.remove('activeIndicator');
+          fastForwardIndicator.classList.remove('activeIndicator');
+          autoSearchState = 0;
+        } else if(autoSearchState == 0) {
+          clearInterval(rewindInterval);
+          rewindInterval = setInterval(()=>{
+            audio.currentTime = Math.max(0, audio.currentTime - 0.5);
+          }, 40);
+        }
+      }
+      if(autoSearchState == 0) {
+        rewindIndicator.classList.add('activeIndicator');
+        fastForwardIndicator.classList.remove('activeIndicator');
+        rewbtn.onpointerup = rewbtn.onpointerleave = ()=>{
+          clearInterval(rewindInterval);
+          rewindIndicator.classList.remove('activeIndicator');
+          fastForwardIndicator.classList.remove('activeIndicator');
+          rewbtn.onpointerup = rewbtn.onpointerleave = null;
+        };
+      }
     }
 
-    function fastForwardAudio() {
-      audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+    /*function fastForwardAudio() {
+      if(isMidi) {
+        if(midiPlaying) {
+          pauseAudio();
+          midiCurrentTime = Math.min(midiDuration, midiCurrentTime + 5);
+          //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+          playAudio();
+        } else {
+          midiCurrentTime = Math.min(midiDuration, midiCurrentTime + 5);
+          //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+        }
+      } else {
+        audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+      }
+    }*/
+    let autoSearchIndicatorInterval;
+    if(localStorage.getItem('autoSearchSilenceLength') == null) {
+      localStorage.setItem('autoSearchSilenceLength', autoSearchSilenceLengthBar.value);
+    } else {
+      autoSearchSilenceLengthBar.value = localStorage.getItem('autoSearchSilenceLength');
+    };
+
+    if(localStorage.getItem('autoSearchThreshold') == null) {
+      localStorage.setItem('autoSearchThreshold', autoSearchThresholdBar.value);
+    } else {
+      autoSearchThresholdBar.value = localStorage.getItem('autoSearchThreshold');
+      inputAnalyser.minDecibels = autoSearchThresholdBar.value;
+    };
+    autoSearchBtn.onclick = () => {
+      clearInterval(autoSearchIndicatorInterval);
+      autoSearchIndicator.classList.remove('activeIndicator');
+      rewindIndicator.classList.remove('activeIndicator');
+      fastForwardIndicator.classList.remove('activeIndicator');
+      if(autoSearchState == 0) {
+        autoSearchIndicatorInterval = setInterval(()=>{autoSearchIndicator.classList.toggle('activeIndicator');rewindIndicator.classList.toggle('activeIndicator');fastForwardIndicator.classList.toggle('activeIndicator')}, 250);
+        autoSearchState = 1;
+      } else if(autoSearchState > 0) {
+        clearInterval(autoSearchIndicatorInterval);
+        clearInterval(rewindInterval);
+        autoSearchIndicator.classList.remove('activeIndicator');
+        rewindIndicator.classList.remove('activeIndicator');
+        fastForwardIndicator.classList.remove('activeIndicator');
+        autoSearchState = 0;
+      }
+    };
+    function fastForwardAudio(ffbtn) {
+      clearInterval(rewindInterval);
+      if(isMidi) {
+        if(midiPlaying) {
+          pauseAudio();
+          rewindInterval = setInterval(()=>{
+            midiCurrentTime = Math.min(midiDuration, midiCurrentTime + 0.5);
+            //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+            playAudio();
+          }, 40);
+        } else {
+          rewindInterval = setInterval(()=>{
+            midiCurrentTime = Math.min(midiDuration, midiCurrentTime + 0.5);
+            //updateTitleBar(`Seek: ${formatTime(context.currentTime - midiStartTime)} / ${formatTime(midiDuration)} (${Math.floor((context.currentTime - midiStartTime)/midiDuration*10000)/100}%)`);
+          }, 40);
+        }
+      } else {
+        if(autoSearchState == 1) {
+        autoSearchState = 2;
+        clearInterval(autoSearchIndicatorInterval);
+        clearInterval(rewindInterval);
+        autoSearchIndicator.classList.add('activeIndicator');
+        rewindIndicator.classList.remove('activeIndicator');
+        fastForwardIndicator.classList.add('activeIndicator');
+
+        let d = 0;
+        inputAnalyser.getByteFrequencyData(inputAnalyserDataArray);
+        let l = Math.max(inputAnalyserDataArray);
+        let m = 255;
+        rewindInterval = setInterval(()=>{
+          analyser.getByteFrequencyData(inputAnalyserDataArray);
+          l = Math.max(...inputAnalyserDataArray);
+          if(l == 0 && m > 0) {d = 0; m = l;} // silence starts
+          if(l == 0 && m == 0) {m = Math.max(m,l);}; // silence continues
+          if(l > 0) {d = 0; m = 255;} // no silence
+          if(d >= Number(autoSearchSilenceLengthBar.value)-1 && m == 0 || Math.min(audio.duration, audio.currentTime + 0.5) == audio.duration) {
+            clearInterval(autoSearchIndicatorInterval);
+            clearInterval(rewindInterval);
+            autoSearchIndicator.classList.remove('activeIndicator');
+            rewindIndicator.classList.remove('activeIndicator');
+            fastForwardIndicator.classList.remove('activeIndicator');
+            autoSearchState = 0;
+          } // silence is long, end fast forwarding 
+          audio.currentTime = Math.min(audio.duration, audio.currentTime + 0.5);
+          d++;
+        }, 40);
+        } else if(autoSearchState == 2) {
+          clearInterval(autoSearchIndicatorInterval);
+          clearInterval(rewindInterval);
+          autoSearchIndicator.classList.remove('activeIndicator');
+          rewindIndicator.classList.remove('activeIndicator');
+          fastForwardIndicator.classList.remove('activeIndicator');
+          autoSearchState = 0;
+        } else if(autoSearchState == 0) {
+          clearInterval(rewindInterval);
+          rewindInterval = setInterval(()=>{
+            audio.currentTime = Math.min(audio.duration, audio.currentTime + 0.5);
+          }, 40);
+        }
+      }
+      if(autoSearchState == 0) {
+        rewindIndicator.classList.remove('activeIndicator');
+        fastForwardIndicator.classList.add('activeIndicator');
+        ffbtn.onpointerup = ffbtn.onpointerleave = ()=>{
+          clearInterval(rewindInterval);
+          rewindIndicator.classList.remove('activeIndicator');
+          fastForwardIndicator.classList.remove('activeIndicator');
+          ffbtn.onpointerup = ffbtn.onpointerleave = null;
+        };
+      }
     }
 
     function prevTrack() {
       if (currentTrackIndex > 0) {
         currentTrackIndex--;
         loadTrack(currentTrackIndex);
+        if(state==0){playAudio();pauseAudio()};
+        if(state==1){playAudio()};
+        if(state==2){playAudio();pauseAudio()};
       }
     }
 
     function nextTrack(onTrackEnd) {
       if(onTrackEnd) {
-        if(repeatMode == 1 && currentTrackIndex < tracks.length - 1) {
-          currentTrackIndex++;
-          loadTrack(currentTrackIndex);
-          playAudio();
-        } else if(repeatMode == 2 && !(currentTrackIndex < tracks.length - 1)) {
+        if(repeatMode == 2 && !(currentTrackIndex < tracks.length - 1)) {
           currentTrackIndex = 0;
           loadTrack(currentTrackIndex);
           playAudio();
-        } else if(repeatMode == 0) {
+        } else if(repeatMode > 0 && (currentTrackIndex < tracks.length - 1)) {
+          currentTrackIndex++;
+          loadTrack(currentTrackIndex);
+          playAudio();
+        } else /*if(repeatMode == 0)*/ {
           stopAudio();
         }
       } else if (currentTrackIndex < tracks.length - 1) {
         currentTrackIndex++;
         loadTrack(currentTrackIndex);
-        playAudio();
+        if(state==0){playAudio();pauseAudio()}
+        if(state==1){playAudio()};
+        if(state==2){playAudio();pauseAudio()};
       } else if(repeatMode == 2 && !(currentTrackIndex < tracks.length - 1)) {
         currentTrackIndex = 0;
         loadTrack(currentTrackIndex);
-        playAudio();
+        if(state==0){playAudio();pauseAudio()}
+        if(state==1){playAudio()};
+        if(state==2){playAudio();pauseAudio()};
       }
     }
 
@@ -1166,6 +1736,19 @@ if(localStorage.getItem('compressorRelease') != null) {
   document.getElementById('compRelease').value = localStorage.getItem('compressorRelease');
 }
 
+audio.preservesPitch = false;
+speedBar.oninput = () => {
+audio.playbackRate = Number(speedBar.value);
+updateTitleBar(`Speed: ${audio.playbackRate}`);
+};
+
+
+
+
+
+
+
+
 let titleBarTimeout;
 function updateTitleBar(info) {
   const titleEl = document.getElementById('titleBar');
@@ -1183,15 +1766,27 @@ function updateTitleBar(info) {
   }
   // titleEl.textContent = `${name} | ${info}`;
 }
+let secMinMode = 0; // 0 = minutes and seconds (MM:SS), 1 = seconds (SSSS), 2 = seconds divided by 10 (SSSS / 10)
+if(localStorage.getItem('secMinMode')==null) {localStorage.setItem('secMinMode', '0')}
+secMinMode = Number(localStorage.getItem('secMinMode'));
 function formatTime(sec) {
-  if (isNaN(sec)) return "00:00";
-  const minutes = Math.floor(sec / 60).toString().padStart(2, "0");
-  const seconds = Math.floor(sec % 60).toString().padStart(2, "0");
-  return `${minutes}:${seconds}`;
+  if(secMinMode == 0) {
+    if (isNaN(sec)) return "00:00";
+    const minutes = Math.floor(sec / 60).toString().padStart(2, "0");
+    const seconds = Math.floor(sec % 60).toString().padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  } else if(secMinMode == 1) {
+    if (isNaN(sec)) return "0000";
+    return `${Math.floor(sec).toString().padStart(4, '0')}`.slice(-4);
+  } else if(secMinMode == 2) {
+    if (isNaN(sec)) return "0000";
+    return `${Math.floor(sec/10).toString().padStart(4, '0')}`;
+  }
 }
 const timeCounter = document.getElementById('timeCounter');
 let timeDisplayMode = 0; // 0 = current, 1 = remaining, 2 = duration only
-
+if(localStorage.getItem('timeDisplayMode') == null) {localStorage.setItem('timeDisplayMode', '0')}
+timeDisplayMode = Number(localStorage.getItem('timeDisplayMode'));
 // Update time counter display based on mode
 function updateTimeCounter() {
   if (state > 0) {
@@ -1237,7 +1832,31 @@ function updateTimeCounter() {
 // Cycle display mode on click
 timeCounter.addEventListener('click', () => {
   timeDisplayMode = (timeDisplayMode + 1) % 3;
+  localStorage.setItem('timeDisplayMode', timeDisplayMode);
+});
+
+timerModeBtn.addEventListener('click', () => {
+  timeDisplayMode = (timeDisplayMode + 1) % 3;
+  localStorage.setItem('timeDisplayMode', timeDisplayMode);
   //updateTimeCounter();
+  updateTitleBar(`Timer mode: ${timeDisplayMode == 0 ? 'consumed time' : (timeDisplayMode == 1 ? 'remaining time' : 'duration')}`);
+});
+
+secMinBtn.addEventListener('click', () => {
+  secMinMode = (secMinMode + 1) % 3;
+  localStorage.setItem('secMinMode', secMinMode);
+  updateTitleBar(`Counter mode: ${secMinMode == 0 ? 'seconds and minutes' : (secMinMode == 1 ? 'seconds' : 'seconds x10')}`);
+});
+
+analyserModeBtn.addEventListener('click', () => {
+  analyserMode = (analyserMode + 1) % 3;
+  localStorage.setItem('analyserMode', analyserMode);
+  if(analyserMode == 1) {
+    analyserBox.className = 'bassAnalyser';
+  } else {
+    analyserBox.className = '';
+  }
+  updateTitleBar(`Visualizer mode: ${analyserMode == 0 ? 'normal (spectrum)' : (analyserMode == 1 ? 'bass' : 'level')}`);
 });
 
 analyserBox.addEventListener('click', () => {
@@ -1250,12 +1869,37 @@ analyserBox.addEventListener('click', () => {
   }
 });
 
+analyserMaxBtn.addEventListener('click', () => {
+  analyserMaxMode = (analyserMaxMode + 1) % 3;
+  localStorage.setItem('analyserMaxMode', analyserMaxMode);
+  if(analyserMaxMode == 0) {
+    analyser.maxDecibels = 0;
+    bassAnalyser.maxDecibels = 0;
+  } else if(analyserMaxMode == 1) {
+    analyser.maxDecibels = 10;
+    bassAnalyser.maxDecibels = 10;
+  } else if(analyserMaxMode == 2) {
+    analyser.maxDecibels = -10;
+    bassAnalyser.maxDecibels = -10;
+  }
+  updateTitleBar(`Visualizer max level: ${analyserMaxMode == 0 ? '0dB' : (analyserMaxMode == 1 ? '10dB' : '-10dB')}`);
+});
+
 repeatIndicator.addEventListener('click', () => {
   repeatMode = (repeatMode + 1) % 3;
   repeatIndicator.classList.remove('repeatIndicator0');
   repeatIndicator.classList.remove('repeatIndicator1');
   repeatIndicator.classList.remove('repeatIndicator2');
   repeatIndicator.classList.add(`repeatIndicator${repeatMode}`);
+});
+
+repeatModeBtn.addEventListener('click', () => {
+  repeatMode = (repeatMode + 1) % 3;
+  repeatIndicator.classList.remove('repeatIndicator0');
+  repeatIndicator.classList.remove('repeatIndicator1');
+  repeatIndicator.classList.remove('repeatIndicator2');
+  repeatIndicator.classList.add(`repeatIndicator${repeatMode}`);
+  updateTitleBar(`Repeat mode: ${repeatMode == 0 ? 'play current track once' : (repeatMode == 1 ? 'play all tracks' : 'repeat playlist')}`);
 });
 
 // Update counter on audio time updates and track load
@@ -1282,13 +1926,20 @@ document.getElementById('plButton').addEventListener('click', () => {
     playlistWindow.document.title = 'Playlist';
     playlistWindow.document.body.style.fontFamily = 'Arial, sans-serif';
     playlistWindow.document.body.style.padding = '10px';
-    playlistWindow.document.head.innerHTML += `<style>      body {
+    playlistWindow.document.head.innerHTML += `
+<style>
+    body {
       font-family: Arial, sans-serif;
       padding: 20px;
       color-scheme: dark;
       background: rgb(50,50,50);
       color: #eee;
-    }</style>`;
+    }
+    .activeTrack {
+      background-color: #444;
+      font-weight = bold;
+    }
+</style>`;
 
     const heading = playlistWindow.document.createElement('h2');
     heading.textContent = 'Playlist';
@@ -1307,8 +1958,8 @@ document.getElementById('plButton').addEventListener('click', () => {
 
       // Highlight currently playing track
       if (index === currentTrackIndex) {
-        li.style.backgroundColor = '#444';
-        li.style.fontWeight = 'bold';
+        /*li.style.backgroundColor = '#444';
+        li.style.fontWeight = 'bold';*/
         li.className = 'activeTrack';
       }
 
@@ -1377,7 +2028,7 @@ border-image-outset:
 border-image-repeat:
 repeat repeat;
 border-image-source:
-url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADAgMAAAArRl0sAAAACVBMVEUoKCg8PDwyMjLDVyYkAAAADklEQVR4nGNgYVBhCAEAANoAfdH+EvwAAAAASUVORK5CYII=");
+url("textures/slider_bg.png");
 border-style:
 solid;
 background-color: #222;
@@ -1392,7 +2043,7 @@ height:200px;
             height: 24px;
             width: 6px;
             outline: none;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAYCAMAAADuznyRAAAAllBMVEVDREUmJygiIyRTVFUnKCkgISJkZWYyMzQuLy8tLi4rLCwxMjNpaWocHR4ZGhsXGBkUFRYgICAaHB0aGxwYGRoWFxhpamsbHB0VFhcYGRlqa2wdHh8gICFZWlsTFRYTFBQSExMREhMYGBi4uLiEhIRwcHBnZ2dTU1NZWVoQEREaGxscHR0ZGhoeHyBjY2QuMDEuLi8sLS4cnAWJAAAAfklEQVR4nF2OyRKCQAxEo6KyDMlsMigjIAqCu///cwYtLvblVXelUw0wY81hEbCWE1brMIoTECmSVCC0sRsFWeooV2O4ZbcrDDJE4az0sC+r+tDA8dS23XlCX8p6aLhnkDz3LpR7yK63EeKORPxFu6/TaPnk8XxF7+Rvy2/gByloCkxC7ruSAAAAAElFTkSuQmCC');
+            background: url('textures/slider_vertical.png');
             -webkit-appearance: none;
             appearance: none;
             background-repeat: no-repeat;
@@ -1410,22 +2061,41 @@ height:200px;
       gap: 4px;
       margin-top: 15px;
     }
-    #enableEqualizer {
+    /*#enableEqualizer {
 
+    }*/
+    .barLabel {
+      width:16px;
+      height:2px;
+      display:inline-block;
+      margin:0;
+      margin-left:-10px;
+      margin-right:-10px;
+      padding:0;
+      font-size:8px;
+      transform: translate(-10.5px,216px) rotate(45deg);
+      text-align:center;
+      /*outline: #f008 1px solid;*/
+      font-family: Consolas, monospace;
+      
+    }
+    .barLabel.levelLabel {
+      transform: translate(-10.5px,230px);
     }
       
-</style></head><body><input type="checkbox" id="enableEqualizer"><label for"enableEqualizer">EQ on</label><div class="equalizer" id="eqBars"><input type="range" min="-40" max="40" value="0" title="Preamp" style="margin-right: 32px;" id="preampBar">`;
+</style></head><body><input type="checkbox" id="enableEqualizer"><label for"enableEqualizer">EQ on</label><div class="equalizer" id="eqBars"><input type="range" min="-40" max="40" value="0" title="Preamp" style="margin-right: 32px;" id="preampBar"><span class="barLabel" style="transform: translate(-38.5px,216px) rotate(45deg)">P</span><span class="barLabel levelLabel" style="transform: translate(-38.5px,230px)">0</span>`;
 
     // Add range inputs
     filters.forEach((filter, index) => {
-      iHTML += `<input type="range" min="-40" max="40" value="0" title="${freqs[index]}hz">`;
+      iHTML += `<input type="range" min="-40" max="40" value="0" title="${freqs[index]}hz"><span class="barLabel">${freqs[index].toString().replace(/000$/, 'K')}</span><span class="barLabel levelLabel">0</span>`;
     });
 iHTML += `</div>
 </body></html>`;
 /* <!--
-<scr`+`ipt>
+<scr`+`ipt>window.onerror = (e) => {alert(e)};
     // Handle equalizer UI
     let eqBars = document.querySelectorAll('input');
+    let levelLabels = document.querySelectorAll('.barLabel.levelLabel');
     eqBars.forEach((slider, i) => {
       slider.addEventListener("input", () => {
         if (i > 0) {
@@ -1436,6 +2106,7 @@ iHTML += `</div>
           window.opener.updateTitleBar(\`EQ: Preamp: \${slider.value} dB\`);
         };
         window.opener.eqpreset[i] = parseFloat(slider.value);
+        levelLabels[i].textContent = slider.value;
         window.opener.localStorage.setItem('eq_preset', JSON.stringify(window.opener.eqpreset));
       });
     });
@@ -1447,6 +2118,10 @@ for (let i = 0; i < window.opener.eqpreset.length; i++) {
           //filters[i-1].gain.value = eqpreset[i];
           eqBars[i].value = window.opener.eqpreset[i];     
         }
+        //alert(levelLabels[i]);
+        //alert(i);
+        levelLabels[i].textContent = `${eqBars[i].value}`;
+        //alert(levelLabels[i]);
   
       }
 </scr`+`ipt> --> /*//**/
@@ -1461,6 +2136,7 @@ equalizerWindow.document.title = 'Equalizer';
 /* equalizerWindow.document.addEventListener('DOMContentLoaded',() => { */
     // Handle equalizer UI
     let eqBars = equalizerWindow.document.body.querySelectorAll('input[type="range"]');
+    let levelLabels = equalizerWindow.document.querySelectorAll('.barLabel.levelLabel');
     eqBars.forEach((slider, i) => {
       slider.addEventListener("input", () => {
         if (i > 0) {
@@ -1473,6 +2149,7 @@ equalizerWindow.document.title = 'Equalizer';
           slider.title = `Preamp: ${slider.value}db`;
         };
         eqpreset[i] = parseFloat(slider.value);
+        levelLabels[i].textContent = slider.value;
         localStorage.setItem('eq_preset', JSON.stringify(eqpreset));
       });
       if(i > 0) {
@@ -1489,33 +2166,66 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
           //filters[i-1].gain.value = eqpreset[i];
           eqBars[i].value = eqpreset[i];     
         }
-        
+        levelLabels[i].textContent = `${eqBars[i].value}`;
       }
       let enableEqualizer = equalizerWindow.document.querySelector('#enableEqualizer');
       enableEqualizer.checked = Number(localStorage.getItem('equalizerOn'));
       enableEqualizer.oninput = () => {
         if(enableEqualizer.checked) {
-          sourceNode.disconnect(compressor);
-          sourceNode.connect(preamp);
-          filters.reduce((prev, curr) => {
-            prev.connect(curr);
-            return curr;
-          }, preamp).connect(compressor);
-          if(isMidi) {
-            midiOscillators.forEach(track => {
-              track.forEach((o) => {o.gain.disconnect(compressor);o.gain.connect(preamp)});
-            });
+          if(compToggle.checked){
+            sourceNode.disconnect(compressor);
+            sourceNode.connect(preamp);
+            filters.reduce((prev, curr) => {
+              prev.connect(curr);
+              return curr;
+            }, preamp);
+            filters[filters.length-1].connect(compressor);
+            if(isMidi) {
+              midiOscillators.forEach(track => {
+                track.forEach((o) => {o.gain.disconnect(compressor);o.gain.connect(preamp)});
+              });
+            }
+          } else{
+            sourceNode.disconnect(inputLevelGain);
+            sourceNode.connect(preamp);
+            filters.reduce((prev, curr) => {
+              prev.connect(curr);
+              return curr;
+            }, preamp);
+            filters[filters.length-1].connect(inputLevelGain);
+            if(isMidi) {
+              midiOscillators.forEach(track => {
+                track.forEach((o) => {o.gain.disconnect(inputLevelGain);o.gain.connect(preamp)});
+              });
+            }
           }
         } else {
-          filters.reduce((prev, curr) => {
-            prev.disconnect(curr);
-            return curr;
-          }, preamp).disconnect(compressor);
-          sourceNode.connect(compressor);
-          if(isMidi) {
-            midiOscillators.forEach(track => {
-              track.forEach((o) => {o.gain.disconnect(preamp);o.gain.connect(compressor)});
-            });
+          if(compToggle.checked){
+            sourceNode.disconnect(preamp);
+            filters.reduce((prev, curr) => {
+              prev.disconnect(curr);
+              return curr;
+            }, preamp);
+            filters[filters.length-1].disconnect(compressor);
+            sourceNode.connect(compressor);
+            if(isMidi) {
+              midiOscillators.forEach(track => {
+                track.forEach((o) => {o.gain.disconnect(preamp);o.gain.connect(compressor)});
+              });
+            }
+          } else{
+            sourceNode.disconnect(preamp);
+            filters.reduce((prev, curr) => {
+              prev.disconnect(curr);
+              return curr;
+            }, preamp);
+            filters[filters.length-1].disconnect(inputLevelGain);
+            sourceNode.connect(inputLevelGain);
+            if(isMidi) {
+              midiOscillators.forEach(track => {
+                track.forEach((o) => {o.gain.disconnect(preamp);o.gain.connect(inputLevelGain)});
+              });
+            }
           }
         }
         localStorage.setItem('equalizerOn', Number(enableEqualizer.checked));
@@ -1611,9 +2321,9 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
                         /* console.log(faviconNumbers[Number(t[i])]); */
                     } else if(i == 1) {
                         fctx.drawImage(faviconNumbers[Number(t[i])], 4, 10);
-                    } else if(i == 3) {
+                    } else if(i == (secMinMode > 0 ? 2 : 3)) {
                         fctx.drawImage(faviconNumbers[Number(t[i])], 9, 10);
-                    } else if(i == 4) {
+                    } else if(i == (secMinMode > 0 ? 3 : 4)) {
                         fctx.drawImage(faviconNumbers[Number(t[i])], 13, 10);
                     }
                 }
@@ -1621,9 +2331,63 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
             };
             let dataURL = fc.toDataURL("image/png", 1.0);
             favicon.href = dataURL;
-        }
+        };
+
+let midVisImg = midVisCtx.getImageData(0, 0, midVisualizer.width, midVisualizer.height);
+setInterval(()=>{
+midVisImg = midVisCtx.getImageData(0, 0, midVisualizer.width, midVisualizer.height);
+midVisCtx.fillStyle = '#000';
+midVisCtx.fillRect(0,0,midVisualizer.width,midVisualizer.height);
+for(let i=0;i<midVisArr.length;i++){
+midVisCtx.fillStyle = `rgb(${midVisArr[i]}, ${midVisArr[i]}, ${midVisArr[i]})`;
+midVisCtx.fillRect(0, 127-i, 1, 1);
+
+};
+midVisCtx.putImageData(midVisImg, 1, 0);
+},16);
     audio.addEventListener("ended", ()=>{nextTrack(true)});
+/*
+
+⠀⠀⠀⠀⠀⠀⠀⠀⣠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠻⡿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠿⠥⠤⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⡠⡄⣤⠀⠀⠀⢀⠃⣷⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠠⠀⠆⠀⠀⠐⠀⠈⠀⠨⠂⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠚⠀⠠⠀⠀⠀⠀⢀⠀⠈⠐⣠⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠐⠀⠀⠀⠂⠀⠀⡀⠀⠀⠂⢁⢊⡅⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠂⡐⢼⡀⠀⠀⠀
+⠀⠀⠀⠀⠂⠀⠀⠀⠂⠀⠀⣆⠀⠀⠀⠈⠄⠀⡔⣣⠀⠀⠀
+⠀⠀⠀⡡⠊⢆⠀⡀⠀⠀⡇⠈⠣⡀⠀⠀⠡⠀⠌⠐⣣⠀⠀
+⠀⡐⣬⢑⡅⢊⢎⣛⢬⡅⢧⠡⣂⣀⣄⠀⠈⠠⠈⠠⢘⢧⠀
+⢀⢱⡖⣍⣿⣧⠀⠣⣧⠓⠀⡜⣅⣿⣿⣧⢀⠐⠀⠂⢤⠭⡂
+⠠⠸⢇⠻⣿⡟⠂⠀⠘⢷⠀⠈⢿⣿⡿⡻⡉⠄⡁⠀⢀⠨⡆
+⠨⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠈⠀⠣⠀⠄⠐⠀⢁⡂
+⠈⡀⠀⠀⠀⠀⠀⢤⣀⣀⣠⠆⠀⠀⠀⠀⠁⠐⠌⠄⡠⢷⠃
+⠀⠐⡠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠁⠀⡃⠠⣂⢢⡜⠀
+⠀⠀⠈⢄⠁⢀⠀⡀⠀⠀⡀⠀⠠⠀⠀⠀⡠⠀⢁⢒⠈⠀⠀
+⠀⠀⠀⠀⠐⠠⡀⠂⠈⠄⠀⣀⠀⠈⢂⠈⠠⡰⠖⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⣶⢾⣼⣧⡿⠷⠋⠁⠀⠀⠀⠀⠀
+
+*/
+window.notesArr = {11:15.434,12:16.352,13:17.324,14:18.354,15:19.445,16:20.602,17:21.827,18:23.125,19:24.5,20:25.957,21:27.5,22:29.135,23:30.868,24:32.703,25:34.648,26:36.708,27:38.891,28:41.203,29:43.654,30:46.249,31:48.999,32:51.913,33:55,34:58.27,35:61.735,36:65.406,37:69.296,38:73.416,39:77.782,40:82.407,41:87.307,42:92.499,43:97.999,44:103.83,45:110,46:116.54,47:123.47,48:130.81,49:138.59,50:146.83,51:155.56,52:164.81,53:174.61,54:185,55:196,56:207.65,57:220,58:233.08,59:246.94,60:261.63,61:277.18,62:293.66,63:311.13,64:329.63,65:349.23,66:369.99,67:392,68:415.3,69:440,70:466.16,71:493.88,72:523.25,73:554.37,74:587.33,75:622.25,76:659.26,77:698.46,78:739.99,79:783.99,80:830.61,81:880,82:932.33,83:987.77,84:1046.5,85:1108.7,86:1174.7,87:1244.5,88:1318.5,89:1396.9,90:1480,91:1568,92:1661.2,93:1760,94:1864.7,95:1975.5,96:2093,97:2217.5,98:2349.3,99:2489,100:2637,101:2793.8,102:2960,103:3136,104:3322.4,105:3520,106:3729.3,107:3951.1,108:4186,109:4434.9,110:4698.6,111:4978,112:5274,113:5587.7,114:5919.9,115:6271.9,116:6644.9,117:7040,118:7458.6,119:7902.1,120:8372,121:8869.8,122:9397.3,123:9956.1,124:10548,125:11175,126:11840,127:12544,128:13290,129:14080,130:14917,131:15804,132:16744};
+
   </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <script type="module">
   /*
     Project Name : midi-parser-js
@@ -1976,8 +2740,7 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
     
 })();
 
-  window.notesArr = {11:15.434,12:16.352,13:17.324,14:18.354,15:19.445,16:20.602,17:21.827,18:23.125,19:24.5,20:25.957,21:27.5,22:29.135,23:30.868,24:32.703,25:34.648,26:36.708,27:38.891,28:41.203,29:43.654,30:46.249,31:48.999,32:51.913,33:55,34:58.27,35:61.735,36:65.406,37:69.296,38:73.416,39:77.782,40:82.407,41:87.307,42:92.499,43:97.999,44:103.83,45:110,46:116.54,47:123.47,48:130.81,49:138.59,50:146.83,51:155.56,52:164.81,53:174.61,54:185,55:196,56:207.65,57:220,58:233.08,59:246.94,60:261.63,61:277.18,62:293.66,63:311.13,64:329.63,65:349.23,66:369.99,67:392,68:415.3,69:440,70:466.16,71:493.88,72:523.25,73:554.37,74:587.33,75:622.25,76:659.26,77:698.46,78:739.99,79:783.99,80:830.61,81:880,82:932.33,83:987.77,84:1046.5,85:1108.7,86:1174.7,87:1244.5,88:1318.5,89:1396.9,90:1480,91:1568,92:1661.2,93:1760,94:1864.7,95:1975.5,96:2093,97:2217.5,98:2349.3,99:2489,100:2637,101:2793.8,102:2960,103:3136,104:3322.4,105:3520,106:3729.3,107:3951.1,108:4186,109:4434.9,110:4698.6,111:4978,112:5274,113:5587.7,114:5919.9,115:6271.9,116:6644.9,117:7040,118:7458.6,119:7902.1,120:8372,121:8869.8,122:9397.3,123:9956.1,124:10548,125:11175,126:11840,127:12544,128:13290,129:14080,130:14917,131:15804,132:16744};
-
+  
 </script>
 </body>
 </html>
