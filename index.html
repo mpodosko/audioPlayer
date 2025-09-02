@@ -12,8 +12,10 @@
   <link rel="shortcut icon" id="favicon">
   <style>
     :root {/*scale:0.5;*/
-      --cbuttons: url("textures/cbuttons.bmp");/*control buttons*/
-      --wbuttons: url("textures/eqpl.png");/*window buttons*/
+      --textures: url("textures.png");
+      --border: url("border.png");
+      /*--cbuttons: url("textures/cbuttons.bmp");control buttons*/
+      /*--wbuttons: url("textures/eqpl.png");window buttons*/
     }
     body {
       font-family: Arial, sans-serif;
@@ -30,7 +32,7 @@
     .controls button, #recordBtn, #recPauseBtn, #syncDubBtn {
       width: 64px;
       height: 32px;
-      background: var(--cbuttons);
+      background: var(--textures);
       margin: 0px;
       padding: 0px;
       border: none;
@@ -76,62 +78,66 @@
       width:64px;
     }
     .controls #eqButton, .controls #plButton, .controls #moreButton, #recordBtn, #recPauseBtn, #syncDubBtn {
-      background: var(--wbuttons);
+      background: var(--textures);
       width:32px;
       height:32px;
     }
 
     .controls #eqButton {
       margin-left: 16px;
+      background-position-x: 0px;
+      background-position-y: -128px;
     }
     .controls #eqButton:active {
-      background-position: 0px -32px;
+      background-position: 0px -160px;
     }
 
     .controls #plButton {
-      background-position: -32px 0px;
+      background-position-x: -32px;
+      background-position-y: -128px;
     }
     .controls #plButton:active {
-      background-position: -32px -32px;
+      background-position: -32px -160px;
     }
 
     .controls #moreButton {
-      background-position: -64px 0px;
+      background-position-x: -64px;
+      background-position-y: -128px;
     }
     .controls #moreButton:active {
-      background-position: -64px -32px;
+      background-position: -64px -160px;
     }
     .controls #moreButton.activeBtn {
-      background-position: -64px -64px;
+      background-position: -64px -192px;
     }
     .controls #moreButton.activeBtn:active {
-      background-position: -64px -96px;
+      background-position: -64px -224px;
     }
 
     #recordBtn {
-      background-position: -96px 0px;
+      background-position: -96px -128px;
     }
     #recordBtn:active {
-      background-position: -96px -32px;
+      background-position: -96px -160px;
     }
     #recordBtn.activeBtn {
-      background-position: -96px -64px;
+      background-position: -96px -192px;
     }
     #recordBtn.activeBtn:active {
-      background-position: -96px -96px;
+      background-position: -96px -224px;
     }
 
     #recPauseBtn {
-      background-position: -128px 0px;
+      background-position: -128px -128px;
     }
     #recPauseBtn:active {
-      background-position: -128px -32px;
+      background-position: -128px -160px;
     }
     #recPauseBtn.activeBtn {
-      background-position: -128px -64px;
+      background-position: -128px -192px;
     }
     #recPauseBtn.activeBtn:active {
-      background-position: -128px -96px;
+      background-position: -128px -224px;
     }
 
 
@@ -260,7 +266,7 @@
     }
     #timeCounter * {
       display: inline-block;
-      background: url("textures/numbers.png");
+      background: var(--textures);
       width: 16px;
       height: 25px;
       margin-right: 6px;
@@ -276,7 +282,7 @@
       /* background: #111; */
     }
     .analyserBar {
-      background: url("textures/spectrum.png");
+      background: var(--textures);
       width: 10px;
       height: 49px;
       margin: 0;
@@ -285,7 +291,7 @@
       display: inline-block;
     }
     #analyserBox.bassAnalyser .analyserBar {
-      background: url("textures/bass.png");
+      background: var(--textures);
     }
     input[type=range] {
       -webkit-appearance: none;
@@ -295,7 +301,7 @@
       border-image-width:1px 1px 1px 1px;
       border-image-outset:0px 0px 0px 0px;
       border-image-repeat:repeat repeat;
-      border-image-source:url("textures/slider_bg.png");
+      border-image-source:var(--border);
       border-style:solid;
       background-color: #222;
       height: 2px;
@@ -304,11 +310,12 @@
       height: 6px;
       width: 24px;
       outline: none;
-      background: url('textures/slider.png');
+      background: var(--textures);
       -webkit-appearance: none;
       appearance: none;
       background-repeat: no-repeat;
-            
+      background-position-x: -568px;
+      background-position-y: -128px;
     }
     #eqBars * {
       width: 2px;
@@ -318,10 +325,12 @@
         height: 24px;
         width: 6px;
         outline: none;
-        background: url('textures/slider_vertical.png');
+        background: var(--textures);
         -webkit-appearance: none;
         appearance: none;
         background-repeat: no-repeat;
+        background-position-x: -568px;
+        background-position-y: -134px;
     }
     input[type="range"]:focus {
       outline: #666 1px solid;
@@ -346,7 +355,9 @@
       height: 9px;
     }
     #playIndicator.activeIndicator {
-      background: url('textures/play.png');
+      background: var(--textures);
+      background-position-x: -504px;
+      background-position-y: -338px;
     }
     #pauseIndicator {
       width: 9px;
@@ -354,26 +365,32 @@
       margin-left: 3px;
     }
     #pauseIndicator.activeIndicator {
-      background: url('textures/pause.png');
+      background: var(--textures);
+      background-position-x: -519px;
+      background-position-y: -338px;
     }
     #repeatIndicator {
       margin-left: 3px;
       width: 21px;
       height: 9px;
-      background: url('textures/repmode.png');
+      background: var(--textures);
+      background-position-x: -528px;
+      background-position-y: -338px;
     }
     #repeatIndicator.repeatIndicator1 {
-      background-position: 0px -9px;
+      background-position-x: -528px;
+      background-position-y: -347px;
     }
     #repeatIndicator.repeatIndicator2 {
-      background-position: 0px -18px;
+      background-position-x: -528px;
+      background-position-y: -356px;
     }
     #hiddenControls {
       border-image-slice:1 1 1 1;
       border-image-width:1px 1px 1px 1px;
       border-image-outset:0px 0px 0px 0px;
       border-image-repeat:repeat repeat;
-      border-image-source:url("textures/border.png");
+      border-image-source: var(--border);
       border-style:solid;
       /* background-color: #222; */
       width: 348px;
@@ -389,28 +406,36 @@
       margin-left: 3px;
     }
     #recIndicator.activeIndicator {
-      background: url('textures/rec.png');
+      background: var(--textures);
+      background-position-x: -504px;
+      background-position-y: -347px;
     }
     #recPauseIndicator {
       width: 9px;
       height: 9px;
     }
     #recPauseIndicator.activeIndicator {
-      background: url('textures/recpause.png');
+      background: var(--textures);
+      background-position-x: -519px;
+      background-position-y: -347px;
     }
 
     #syncDubBtn {
       width: 64px;
-      background-position: -160px 0px;
+      background-position-x: -160px;
+      background-position-y: -128px;
     }
     #syncDubBtn:active {
-      background-position: -160px -32px;
+      background-position-x: -160px;
+      background-position-y: -160px;
     }
     #syncDubBtn.activeBtn {
-      background-position: -160px -64px;
+      background-position-x: -160px;
+      background-position-y: -192px;
     }
     #syncDubBtn.activeBtn:active {
-      background-position: -160px -96px;
+      background-position-x: -160px;
+      background-position-y: -240px;
     }
 
     #displayControls {
@@ -420,7 +445,7 @@
       margin-bottom: -23px;
     }
     #displayControls button {
-      background: url('textures/displaycontrols.png');
+      background: var(--textures);
       width: 32px;
       height: 16px;
       margin: 0;
@@ -433,69 +458,69 @@
       display: inline-block;
     }
 
-    #timerModeBtn {
-      background-position: 0px 0px;
+    #displayControls #timerModeBtn {
+      background-position: 0px -384px;
     }
-    #timerModeBtn:active {
-      background-position: 0px -16px;
+    #displayControls #timerModeBtn:active {
+      background-position: 0px -400px;
     }
-    #timerModeBtn.activeBtn {
-      background-position: 0px -32px;
+    #displayControls #timerModeBtn.activeBtn {
+      background-position: 0px -416px;
     }
-    #timerModeBtn.activeBtn:active {
-      background-position: 0px -48px;
+    #displayControls #timerModeBtn.activeBtn:active {
+      background-position: 0px -432px;
     }
     
     #secMinBtn {
-      background-position: -32px 0px !important;
+      background-position: -32px -384px !important;
     }
     #secMinBtn:active {
-      background-position: -32px -16px !important;
+      background-position: -32px -400px !important;
     }
     #secMinBtn.activeBtn {
-      background-position: -32px -32px !important;
+      background-position: -32px -416px !important;
     }
     #secMinBtn.activeBtn:active {
-      background-position: -32px -48px !important;
+      background-position: -32px -432px !important;
     }
         
     #analyserModeBtn {
-      background-position: -64px 0px !important;
+      background-position: -64px -384px !important;
     }
     #analyserModeBtn:active {
-      background-position: -64px -16px !important;
+      background-position: -64px -400px !important;
     }
     #analyserModeBtn.activeBtn {
-      background-position: -64px -32px !important;
+      background-position: -64px -416px !important;
     }
     #analyserModeBtn.activeBtn:active {
-      background-position: -64px -48px !important;
+      background-position: -64px -432px !important;
     }
 
     #analyserMaxBtn {
-      background-position: -128px 0px !important;
+      background-position: -128px -384px !important;
     }
     #analyserMaxBtn:active {
-      background-position: -128px -16px !important;
+      background-position: -128px -400px !important;
     }
     #analyserMaxBtn.activeBtn {
-      background-position: -128px -32px !important;
+      background-position: -128px -416px !important;
     }
     #analyserMaxBtn.activeBtn:active {
-      background-position: -128px -48px !important;
+      background-position: -128px -432px !important;
     }
             
     #repeatModeBtn {
-      background-position: -96px 0px !important;
+      background-position: -96px -384px !important;
     }
     #repeatModeBtn:active {
-      background-position: -96px -16px !important;
+      background-position: -96px -400px !important;
     }
     #repeatModeBtn.activeBtn {
-      background-position: -96px -32px !important;
+      background-position: -96px -416px !important;
     }
     #repeatModeBtn.activeBtn:active {
-      background-position: -96px -48px !important;
+      background-position: -96px -432px !important;
     }
     * {image-rendering:pixelated}
 
@@ -503,38 +528,46 @@
       width: 128px;
       height:32px;
       margin:0;padding:0;border:none;display:inline-block;
-      background:url('textures/autosearch_btn.png');
-      background-position: 0px 0px;
+      background: var(--textures);
+      background-position: 0px -256px;
     }
     #autoSearchBtn:active {
-      background-position: 0px -32px;
+      background-position: 0px -288px;
     }
     #autoSearchBtn.activeBtn {
-      background-position: 0px -64px;
+      background-position: 0px -320px;
     }
     #autoSearchBtn.activeBtn:active {
-      background-position: 0px -96px;
+      background-position: 0px -352px;
     }
     #autoSearchImg {
       display: inline-block; margin: 0; padding: 0;
       /*margin-left:4px;*/
       width: 96px;
       height: 32px;
-      background: url('textures/autosearch_bg.png');
+      background: var(--textures);
+      background-position: -592px -128px;
     }
     #rewindIndicator, #autoSearchIndicator, #fastForwardIndicator {
       width: 9px;
       height: 9px;
       margin-left: 3px;
     }
-    #autoSearchIndicator {
-      width:29px;background-position:-9px 0px !important;
-    }
+
     #rewindIndicator.activeIndicator, #autoSearchIndicator.activeIndicator, #fastForwardIndicator.activeIndicator {
-      background: url('textures/autosearch_display.png');
+      background: var(--textures);
+      background-position-x: -549px;
+      background-position-y: -338px;
+    }
+    #autoSearchIndicator {
+      width:29px;
+      /*background-position:-9px 0px !important;*/
+      background-position-x: -558px !important;
+      background-position-y: -338px !important;
     }
     #fastForwardIndicator.activeIndicator {
-      background-position:9px 0px !important;
+      background-position-x: -587px !important;
+      background-position-y: -338px !important;
     }
   </style>
 </head>
@@ -1026,7 +1059,7 @@ function updateSpectrum() {
 
 for(let i = 0; i < analyserBars.length; i++) {
 let freq_level = i > 3 ? Math.max(...analyserDataArray.slice(spectrumFreqs[Math.floor(i-i/10)], spectrumFreqs[Math.ceil(i-i/10)]+1)) : analyserDataArray[spectrumFreqs[i]];
-analyserBars[i].style.backgroundPosition = `-${Math.ceil(freq_level/255*5)*10}px 0px`;
+analyserBars[i].style.backgroundPosition = `-${(Math.ceil(freq_level/255*5)*10)+504}px -399px`;
 levelAnalyserArray[i]=freq_level;
 }
 }else if(analyserMode == 1){ //bass
@@ -1038,7 +1071,7 @@ levelAnalyserArray[i]=freq_level;
         levelAnalyserArray.unshift(bassLevel);
         levelAnalyserArray.pop();
         for (let i = 0; i < analyserBars.length; i++) {
-          analyserBars[i].style.backgroundPosition = `-${Math.ceil(levelAnalyserArray[i]/255*5)*10||10}px 0px`;
+          analyserBars[i].style.backgroundPosition = `-${(Math.ceil(levelAnalyserArray[i]/255*5)*10||10)+564}px -399px`;
         }
       }
     }else if(analyserMode == 2) { //level
@@ -1051,7 +1084,7 @@ levelAnalyserArray[i]=freq_level;
         levelAnalyserArray.pop();
       for (let i = 0; i < analyserBars.length; i++) {
     
-      analyserBars[i].style.backgroundPosition = `-${Math.ceil(levelAnalyserArray[i]/255*5)*10||10}px 0px`;
+      analyserBars[i].style.backgroundPosition = `-${(Math.ceil(levelAnalyserArray[i]/255*5)*10||10)+504}px -399px`;
     
     
       }}};
@@ -2028,7 +2061,7 @@ border-image-outset:
 border-image-repeat:
 repeat repeat;
 border-image-source:
-url("textures/slider_bg.png");
+url('border.png');
 border-style:
 solid;
 background-color: #222;
@@ -2043,10 +2076,12 @@ height:200px;
             height: 24px;
             width: 6px;
             outline: none;
-            background: url('textures/slider_vertical.png');
+            background: url('textures.png');
             -webkit-appearance: none;
             appearance: none;
             background-repeat: no-repeat;
+            background-position-x: -568px;
+            background-position-y: -134px;
         }
         input[type="range"]:focus {
           outline: #666 1px solid;
@@ -2261,7 +2296,7 @@ for (let i = 0; i < eqpreset.length; i++) {//console.log(i);
         if(timeStr[i]==' ') {
           iHTML += `<span style="background: #111;"></span>`
         } else {
-          iHTML += `<span style="background-position:${timerNumbersBackgroundPositions[timeStr[i]]}px 0px;${timeStr[i]==':'||timeStr[i]=='.'?'width:4px;margin-left:-6px;margin-right:2px':''}"></span>`;
+          iHTML += `<span style="background-position:${timerNumbersBackgroundPositions[timeStr[i]]-504}px -374px;${timeStr[i]==':'||timeStr[i]=='.'?'width:4px;margin-left:-6px;margin-right:2px':''}"></span>`;
         }
       }
       timeCounter.innerHTML = iHTML;
