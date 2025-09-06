@@ -443,7 +443,7 @@
       margin: 0;
       padding: 0;
       margin-left: -4px;
-      margin-bottom: 9px;
+      margin-bottom: -7px;
     }
     #displayControls button {
       background: var(--textures);
@@ -523,6 +523,19 @@
     #repeatModeBtn.activeBtn:active {
       background-position: -96px -432px !important;
     }
+
+    #analyserFpsBtn {
+      background-position: -160px -384px !important;
+    }
+    #analyserFpsBtn:active {
+      background-position: -160px -400px !important;
+    }
+    #analyserFpsBtn.activeBtn {
+      background-position: -160px -416px !important;
+    }
+    #analyserFpsBtn.activeBtn:active {
+      background-position: -160px -432px !important;
+    }
     * {image-rendering:pixelated}
 
     #autoSearchBtn {
@@ -578,10 +591,12 @@
       height: 16px;
       display: inline-block;
       background: var(--textures);
+      
     }
     #titleBar {
-      font-weight: bold; font-size: 16px; margin: 0px; height: 16px;margin-left: 42px;margin-top:17px;margin-bottom:8px;
+      font-weight: bold; font-size: 16px; margin: 0px; height: 16px;margin-left: 42px;margin-top:10px;margin-bottom:15px;
       width: 286px;overflow: hidden;overflow-x: auto;
+
     }
     #titleBar::-webkit-scrollbar {
       display: none;
@@ -610,6 +625,7 @@
     <button id="secMinBtn"></button>
     <button id="analyserModeBtn"></button>
     <button id="analyserMaxBtn"></button>
+    <button id="analyserFpsBtn"></button>
     <button id="repeatModeBtn"></button>
   </div>
   <div class="controls">
@@ -744,6 +760,7 @@ VHS
     let repeatMode = 1; // 0 - don't play next track when current ends, 1 - play all playlist to the end, 2 - repeat playlist (play 1st track after last one)
     let analyserMode = 0; // 0 - spectrum (normal), 1 - bass, 2 - level
     let analyserMaxMode = 1; // 0 - analyser max = 0dB, 1 - analyser max = +10dB
+    let analyserFps = 1; // 0 - maximum, 1 - 20FPS
     let levelAnalyserArray = [0,0,0,0,0,0,0,0,0,0,0];
     let state = 0; // 0 - stop, 1 - play, 2 - pause
     let autoSearchState = 0; // 0 - off, 1 - direction choosing, 2 - rewinding/fast forwarding
@@ -1081,9 +1098,9 @@ analyserBars[i].style.backgroundPosition = `-${(Math.ceil(freq_level/255*5)*10)+
 levelAnalyserArray[i]=freq_level;
 }
 }else if(analyserMode == 1){ //bass
-      analyserCounter++; // slows down
-      if(analyserCounter == 1) {
-        analyserCounter = 0;
+      //analyserCounter++; // slows down
+      //if(analyserCounter == 1) {
+        //analyserCounter = 0;
         bassAnalyser.getByteFrequencyData(bassAnalyserDataArray);
         let bassLevel = bassAnalyserDataArray[0];
         levelAnalyserArray.unshift(bassLevel);
@@ -1091,11 +1108,11 @@ levelAnalyserArray[i]=freq_level;
         for (let i = 0; i < analyserBars.length; i++) {
           analyserBars[i].style.backgroundPosition = `-${(Math.ceil(levelAnalyserArray[i]/255*5)*10||10)+564}px -399px`;
         }
-      }
+      //}
     }else if(analyserMode == 2) { //level
-      analyserCounter++; // slows down
-      if(analyserCounter == 1) {
-        analyserCounter = 0;
+      //analyserCounter++; // slows down
+      //if(analyserCounter == 1) {
+        //analyserCounter = 0;
         analyser.getByteFrequencyData(analyserDataArray);
         let levelValue = Math.max(...analyserDataArray);
         levelAnalyserArray.unshift(levelValue);
@@ -1105,10 +1122,17 @@ levelAnalyserArray[i]=freq_level;
       analyserBars[i].style.backgroundPosition = `-${(Math.ceil(levelAnalyserArray[i]/255*5)*10||10)+504}px -399px`;
     
     
-      }}};
+      }}//};
   renderFavicon(levelAnalyserArray);
 };
-setInterval(updateSpectrum, 50);
+let updateSpectrumInterval;
+
+if(localStorage.getItem('analyserFps') == null) {
+  localStorage.setItem('analyserFps', '1');
+}
+  analyserFps = Number(localStorage.getItem('analyserFps'));
+  updateSpectrumInterval = setInterval(updateSpectrum, (analyserFps*50)||1);
+
 
     if(localStorage.getItem('eq_preset')==null) {
       localStorage.setItem('eq_preset', JSON.stringify(eqpreset));
@@ -1138,6 +1162,10 @@ setInterval(updateSpectrum, 50);
         } else {
           let url1 = URL.createObjectURL(file);
           addTrack(file.name, url1);
+/*           if(/audio\/mid/.test(file.type)) {
+            let fr = new FileReader();
+            fr.readAsText(file);
+          } */
         }
         if(i == files.length - 1) {
           tracksDur = 0;
@@ -1149,7 +1177,9 @@ setInterval(updateSpectrum, 50);
         }
       }
     });
-    
+    /*id3
+      
+    */
     function loadURLPrompt() {
   const url = prompt("Enter audio URL:");
   if (url) {
@@ -1864,6 +1894,24 @@ function renderTitleBar(text) {
 };
 updateTitleBar();
 //updateTitleBar(`ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789.!'-_~@"#№$;%^:\n&?*()+=/\\[]{}<>\`°\nАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЭЮЯЄІЇҐЁ\nабвгдежзийклмнопрстуфхцчшщъьэюяєіїґё`);
+/*
+
+symbolPositions generator
+
+let symbols = `ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789.!'-_~@"#№$;,%^:\n&?*()+=/\\[]{}<>\`°\nАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЭЮЯЄІЇҐЁ\nабвгдежзийклмнопрстуфхцчшщъьэюяєіїґё`;
+
+let startPos = {x:-280,y:-187};
+
+let json = {};
+let shift = {x:0,y:0};
+for(let i0 = 0; i0 < symbols.length; i0++){
+if(symbols[i0] == '\n'){shift.x = 0; shift.y += 17} else {
+json[symbols[i0].toString().charCodeAt(0)] = {x:startPos.x-shift.x,y:startPos.y-shift.y};shift.x += 11;
+}}
+
+JSON.stringify(json)
+
+*/
 let secMinMode = 0; // 0 = minutes and seconds (MM:SS), 1 = seconds (SSSS), 2 = seconds divided by 10 (SSSS / 10)
 if(localStorage.getItem('secMinMode')==null) {localStorage.setItem('secMinMode', '0')}
 secMinMode = Number(localStorage.getItem('secMinMode'));
@@ -1981,6 +2029,14 @@ analyserMaxBtn.addEventListener('click', () => {
     bassAnalyser.maxDecibels = -10;
   }
   updateTitleBar(`Visualizer max level: ${analyserMaxMode == 0 ? '0dB' : (analyserMaxMode == 1 ? '10dB' : '-10dB')}`);
+});
+
+analyserFpsBtn.addEventListener('click', () => {
+  analyserFps = (analyserFps + 1) % 2;
+  localStorage.setItem('analyserFps', analyserFps);
+  clearInterval(updateSpectrumInterval);
+  updateSpectrumInterval = setInterval(updateSpectrum, (analyserFps*50)||1);
+  updateTitleBar(`Visualizer FPS: ${analyserFps == 0 ? 'maximum' : (analyserFps == 1 ? '20' : '0')}`);
 });
 
 repeatIndicator.addEventListener('click', () => {
